@@ -2,11 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sven.develop">
 
+    <permission
+        android:name="com.sven.develop.BOOK_MANAGER_SERVERCE"
+        android:protectionLevel="normal"></permission>
+
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="com.sven.develop.BOOK_MANAGER_SERVERCE" />
 
     <application
         android:name=".DevApplication"
@@ -16,12 +21,51 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>                <action android:name="android.intent.action.MAIN" />
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".DataBindingActivity" />
+        <activity
+            android:name=".launchmode.SingleTaskActivityA"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.seven.develop.singletask" />
+        <activity
+            android:name=".launchmode.SingleTaskActivityB"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.seven.develop.singletask" />
+        <activity android:name=".launchmode.StandardActivity1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DataBindingActivity"/>
+        <activity android:name=".launchmode.StandardActivity2" />
+
+        <receiver
+            android:name=".receivers.MyBroadcastReceiver"
+            android:process=":receiver"></receiver>
+
+        <service
+            android:name="com.sven.develop.aidl.BookManagerService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.sven.develop.BOOK_MANAGER_SERVERCE"
+            android:process=":remote"></service>
+
+        <activity
+            android:name=".aidl.AIDLActivity"
+            android:label="aidl">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
